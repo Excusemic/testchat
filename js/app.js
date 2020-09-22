@@ -57,7 +57,7 @@ sendMessage.addEventListener('keyup', e => {
         e.preventDefault();
         let mymessage = document.getElementById('mymessage').value;
         let selectedRoom = document.querySelector('.selected-chatroom');
-        if(mymessage=='') {
+        if(mymessage=='' || !/\S/.test(mymessage)) {
             alert('Poruka ne moze biti prazna')
             document.getElementById('mymessage').value='';
         } else {
@@ -82,6 +82,8 @@ document.getElementById('mymessage').addEventListener('keydown', event => {
     if(event.code === 'Enter') {
         if(!event.shiftKey) {
             event.preventDefault();
+        } else if (event.shiftKey) {
+
         }
     } 
 })
