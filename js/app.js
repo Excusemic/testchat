@@ -1,20 +1,23 @@
 import {Chatroom} from './chat.js';
 import {ChatUI} from './ui.js'
-
-
-let sendMessage = document.getElementById('myMessageForm');
-let setUsername = document.getElementById('updateUsernameForm');
-let chatRooms = document.querySelectorAll('.main-content-header div');
-let defaultSelectedRoom = document.querySelector('.selected-chatroom');
-let currentUser = `guest${randomNo()}`;
-let usernameUpdateBtn = document.getElementById('updateUsername')
 if (localStorage.getItem('username') == null) {
     localStorage.setItem('username', currentUser)
     
 }
+if(localStorage.getItem('defaultRoom') == null) {
+    localStorage.setItem('defaultRoom', 'general');
+}
+
+let sendMessage = document.getElementById('myMessageForm');
+let setUsername = document.getElementById('updateUsernameForm');
+let chatRooms = document.querySelectorAll('.main-content-header div');
+
+let currentUser = `guest${randomNo()}`;
+let usernameUpdateBtn = document.getElementById('updateUsername')
+
 usernameUpdateBtn.placeholder = `username: ${localStorage.getItem('username')}`
 
-let chatRoom = new Chatroom (defaultSelectedRoom.getAttribute('value'), localStorage.getItem('username'));
+let chatRoom = new Chatroom ('general', localStorage.getItem('username'));
 let chatRoom1 = new Chatroom ('js', localStorage.getItem('username'));
 let chatRoom2 = new Chatroom ('homework', localStorage.getItem('username'));
 let chatRoom3 = new Chatroom ('tests', localStorage.getItem('username'));
@@ -23,11 +26,15 @@ function randomNo() {
     return num;
 }
 chatRooms.forEach(btn => {
+    if(btn.getAttribute('value') == localStorage.getItem('defaultRoom')) {
+        btn.classList.add('selected-chatroom');
+    }
     btn.addEventListener('click', () => {
         chatRooms.forEach(room => {
             room.classList.remove('selected-chatroom');
         })
         let room = btn.getAttribute('value');
+        localStorage.setItem('defaultRoom', room);
         btn.classList.add('selected-chatroom');
         document.querySelector('.chat-messages ul').innerHTML='';
         db.collection('chats')

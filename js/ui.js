@@ -17,11 +17,14 @@ export class ChatUI{
         let li = document.createElement('li');
         let spanUser = document.createElement('span')
         let spanMessage = document.createElement('span')
-        let pDate = document.createElement('p')
+        let pDate = document.createElement('p');
+        let pDateToday = document.createElement('p');
         let msg = elem.message;
         let user = elem.username;
         let dateStamp = elem.created_at;
         let date = dateStamp.toDate();
+        let currentDate = new Date();
+        let dayToday = currentDate.getDate();
         let year = date.getFullYear();
         let month = date.getMonth();
         let day = date.getDate();
@@ -31,9 +34,14 @@ export class ChatUI{
         spanUser.style.fontWeight = "bold"
         spanMessage.innerHTML=msg;
         pDate.innerHTML=`${day}.${month+1}.${year} - ${hours}:${minutes}`
+        pDateToday.innerHTML=`${hours}:${minutes}`;
         div.append(spanUser);
         div.append(spanMessage);
-        div.append(pDate);
+        if(dayToday==day) {
+            div.append(pDateToday);
+        } else {
+            div.append(pDate);
+        }
         li.append(div);
         this.ul.append(li);
         if (spanUser.innerHTML.includes(localStorage.getItem('username'))) {
