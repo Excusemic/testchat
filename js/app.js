@@ -7,9 +7,12 @@ let setUsername = document.getElementById('updateUsernameForm');
 let chatRooms = document.querySelectorAll('.main-content-header div');
 let defaultSelectedRoom = document.querySelector('.selected-chatroom');
 let currentUser = `guest${randomNo()}`;
+let usernameUpdateBtn = document.getElementById('updateUsername')
 if (localStorage.getItem('username') == null) {
     localStorage.setItem('username', currentUser)
+    
 }
+usernameUpdateBtn.placeholder = `username: ${localStorage.getItem('username')}`
 
 let chatRoom = new Chatroom (defaultSelectedRoom.getAttribute('value'), localStorage.getItem('username'));
 let chatRoom1 = new Chatroom ('js', localStorage.getItem('username'));
@@ -54,6 +57,7 @@ sendMessage.addEventListener('submit', e => {
     } else if (selectedRoom.getAttribute('value') == 'tests') {
         chatRoom3.addChat(mymessage)
     }
+    document.getElementById('mymessage').value='';
     
 
 })
@@ -65,6 +69,8 @@ setUsername.addEventListener('submit', e => {
     chatRoom2.username =  username;
     chatRoom3.username =  username;
     localStorage.setItem('username', username)
+    usernameUpdateBtn.placeholder = `username: ${localStorage.getItem('username')}`
+    document.getElementById('updateUsername').value = '';
 
 })
 chatRoom.getChats(data => {
