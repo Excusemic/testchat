@@ -38,6 +38,7 @@ export class ChatUI{
         this.ul.append(li);
         if (spanUser.innerHTML.includes(localStorage.getItem('username'))) {
             spanUser.parentElement.setAttribute('class', 'homeMessage')
+            spanUser.parentElement.scrollIntoView({behavior: "smooth"});
         }
 
     }
