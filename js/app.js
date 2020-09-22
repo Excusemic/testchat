@@ -78,6 +78,7 @@ setUsername.addEventListener('submit', e => {
             chatRoom3.username =  username;
             localStorage.setItem('username', username)
             usernameUpdateBtn.placeholder = `username: ${localStorage.getItem('username')}`
+            document.getElementById('updateUsername').value = '';
             
         }
 })
