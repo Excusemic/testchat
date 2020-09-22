@@ -51,6 +51,8 @@ li {
     margin-left: 0;
     height: auto;
     word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
     color: #fff;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -120,6 +122,8 @@ header{
 .homeMessage{
   height: auto;
   word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
   background-color: rgb(122, 189, 189);
   width: 40%;
   color: #fff;
