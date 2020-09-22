@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e0e0e0;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #57a8a3;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #6377bf;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+.chat-container {
+    width: 60%;
+    margin: auto;
+}
+li {
+    list-style-type: none;
+}
+.messageDiv {
+    background-color: rgb(5, 202, 202);
+    width: 40%;
+    color: #fff;
+    margin: .2em 0em 2em .4em;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: .6em;
+}
+.messageDiv span {
+    color: #FCFCD4;
+}
+.messageDiv p {
+    margin: 0;
+    font-size: .7em;
+    margin-top: .3em;
+    color: #164638;
+}
+header{
+    text-align: center;
+}
+.main-content-header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.main-content-header div {
+    color: #ffffff;
+    width: 25%;
+    border: 1px solid #fff;
+    background-color: rgb(0, 179, 179);
+    padding: .6em 0em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.chat-messages {
+    height: 400px;
+    border: 1px solid aqua;
+    border-bottom: none;
+    border-top: none;
+    overflow-Y: scroll;
+    margin-bottom: 1.4em;
+    background: rgb(221,246,237);
+    background: linear-gradient(184deg, rgba(221,246,237,1) 0%, rgba(68,145,122,1) 100%);
+    
+}
+.main-content-header .selected-chatroom {
+    background-color: rgb(0, 92, 92);
+}
+form {
+    margin: auto;
+    text-align: center;
+    margin-bottom: 1em;
+    display: flex;
+    flex-wrap: wrap;
+}
+form input[type="text"] {
+    border-radius: 15px;
+    height: 2em;
+    width: 300px;
+    padding: .4em;
+    outline: none;
+}
+form input[type="submit"] {
+    outline: none;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(0, 92, 92);
+    color: #fff;
+    height: 2.2em;
+    width: 120px;
+    margin-top: .6em;
+    margin-left: max(2em);
+
+}
+form textarea {
+    width: 300px;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: .4em;
+    outline: none;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+    .chat-container {
+        width: 95%;
+    }
+    ul {
+        padding-left: 0em;
+    }
+}

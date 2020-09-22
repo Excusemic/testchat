@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <header>
+            <h2>IT Bootcamp chat</h2>
+            <p>Choose a chatroom</p>
+        </header>
+        <div class="main-content">
+            <div class="main-content-header">
+                <div class="selected-chatroom" value="general">#general</div>
+                <div value="js">#js</div>
+                <div value="homework">#homework</div>
+                <div value="tests">#tests</div>
+            </div>
+            <div class="chat-messages">
+                <ul></ul>
+            </div>
+            <div class="user-control">
+                <form id="myMessageForm">
+                    <textarea name="mymessage" id="mymessage" placeholder="Your message"></textarea>
+                    <input type="submit" value="Send message">
+                </form>
+                <form id="updateUsernameForm">
+                    <input type="text" name="updateUsername" id="updateUsername" placeholder="Update username">
+                    <input type="submit" value="Update username">
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- **************************************** SCRIPTS ******************************************** -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyBK08wvQQSoLtJ1Eu5ApSvFMKkXAV2q9oA",
+        authDomain: "itbootcamp-chat.firebaseapp.com",
+        databaseURL: "https://itbootcamp-chat.firebaseio.com",
+        projectId: "itbootcamp-chat",
+        storageBucket: "itbootcamp-chat.appspot.com",
+        messagingSenderId: "541817918588",
+        appId: "1:541817918588:web:ec92bebdcd36ef7f2825f9"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    let db = firebase.firestore();
+    </script>
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>
