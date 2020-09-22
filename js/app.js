@@ -59,6 +59,7 @@ sendMessage.addEventListener('submit', e => {
         alert('Poruka ne moze biti prazna')
         document.getElementById('mymessage').value='';
     } else {
+        document.getElementById('mymessage').value='';
         if (selectedRoom.getAttribute('value') == 'general'){
             chatRoom.addChat(mymessage)
         } else if (selectedRoom.getAttribute('value') == 'js') {
