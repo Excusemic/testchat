@@ -36,7 +36,17 @@ chatRooms.forEach(btn => {
 sendMessage.addEventListener('submit', e => {
     e.preventDefault();
     let mymessage = document.getElementById('mymessage').value;
-    chatRoom.addChat(mymessage)
+    let selectedRoom = document.querySelector('.selected-chatroom');
+    if (selectedRoom.getAttribute('value') == 'general'){
+        chatRoom.addChat(mymessage)
+    } else if (selectedRoom.getAttribute('value') == 'js') {
+        chatRoom1.addChat(mymessage)
+    } else if (selectedRoom.getAttribute('value') == 'homework') {
+        chatRoom2.addChat(mymessage)
+    } else if (selectedRoom.getAttribute('value') == 'tests') {
+        chatRoom3.addChat(mymessage)
+    }
+    
 
 })
 setUsername.addEventListener('submit', e => {
@@ -50,7 +60,10 @@ setUsername.addEventListener('submit', e => {
 })
 chatRoom.getChats(data => {
     let testUI = new ChatUI(data);
-    testUI.templateLI()
+    let selectedRoom = document.querySelector('.selected-chatroom');
+    if (selectedRoom.getAttribute('value') == 'general'){
+        testUI.templateLI()
+    }
 
 })
 chatRoom1.getChats(data => {
