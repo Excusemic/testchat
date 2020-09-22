@@ -48,16 +48,23 @@ sendMessage.addEventListener('submit', e => {
     e.preventDefault();
     let mymessage = document.getElementById('mymessage').value;
     let selectedRoom = document.querySelector('.selected-chatroom');
-    if (selectedRoom.getAttribute('value') == 'general'){
-        chatRoom.addChat(mymessage)
-    } else if (selectedRoom.getAttribute('value') == 'js') {
-        chatRoom1.addChat(mymessage)
-    } else if (selectedRoom.getAttribute('value') == 'homework') {
-        chatRoom2.addChat(mymessage)
-    } else if (selectedRoom.getAttribute('value') == 'tests') {
-        chatRoom3.addChat(mymessage)
+    if(mymessage=='') {
+        alert('Poruka ne moze biti prazna')
+        document.getElementById('mymessage').value='';
+    } else {
+        if (selectedRoom.getAttribute('value') == 'general'){
+            chatRoom.addChat(mymessage)
+        } else if (selectedRoom.getAttribute('value') == 'js') {
+            chatRoom1.addChat(mymessage)
+        } else if (selectedRoom.getAttribute('value') == 'homework') {
+            chatRoom2.addChat(mymessage)
+        } else if (selectedRoom.getAttribute('value') == 'tests') {
+            chatRoom3.addChat(mymessage)
+            document.getElementById('mymessage').value='';
+        }
+        
     }
-    document.getElementById('mymessage').value='';
+
     
 
 })
