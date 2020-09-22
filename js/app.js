@@ -1,5 +1,10 @@
 import {Chatroom} from './chat.js';
 import {ChatUI} from './ui.js'
+
+function randomNo() {
+    let num = Math.floor(Math.random() * 1000); 
+    return num;
+}
 let currentUser = `guest${randomNo()}`;
 if (localStorage.getItem('username') == null) {
     localStorage.setItem('username', currentUser)
@@ -22,10 +27,7 @@ let chatRoom = new Chatroom ('general', localStorage.getItem('username'));
 let chatRoom1 = new Chatroom ('js', localStorage.getItem('username'));
 let chatRoom2 = new Chatroom ('homework', localStorage.getItem('username'));
 let chatRoom3 = new Chatroom ('tests', localStorage.getItem('username'));
-function randomNo() {
-    let num = Math.floor(Math.random() * 1000); 
-    return num;
-}
+
 chatRooms.forEach(btn => {
     if(btn.getAttribute('value') == localStorage.getItem('defaultRoom')) {
         btn.classList.add('selected-chatroom');
