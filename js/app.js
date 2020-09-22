@@ -1,5 +1,6 @@
 import {Chatroom} from './chat.js';
 import {ChatUI} from './ui.js'
+let currentUser = `guest${randomNo()}`;
 if (localStorage.getItem('username') == null) {
     localStorage.setItem('username', currentUser)
     
@@ -12,7 +13,7 @@ let sendMessage = document.getElementById('myMessageForm');
 let setUsername = document.getElementById('updateUsernameForm');
 let chatRooms = document.querySelectorAll('.main-content-header div');
 
-let currentUser = `guest${randomNo()}`;
+
 let usernameUpdateBtn = document.getElementById('updateUsername')
 
 usernameUpdateBtn.placeholder = `username: ${localStorage.getItem('username')}`
