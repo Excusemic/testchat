@@ -140,6 +140,11 @@ header{
   padding: .6em;
 
 }
+.rowSpan {
+  display: block;
+  -ms-word-break: normal;
+  word-break: normal;
+}
 form {
     margin: auto;
     text-align: center;

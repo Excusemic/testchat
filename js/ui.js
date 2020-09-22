@@ -30,9 +30,13 @@ export class ChatUI{
         let day = date.getDate();
         let hours = date.getHours();
         let minutes = date.getMinutes();
+        var arrayOfRows = msg.split("\n");
         spanUser.innerHTML=`${user}: `
         spanUser.style.fontWeight = "bold"
-        spanMessage.innerHTML=msg;
+        arrayOfRows.forEach(row => {
+            spanMessage.innerHTML+=`<span class="rowSpan">${row}</span>`;
+        })
+        
         pDate.innerHTML=`${day}.${month+1}.${year} - ${hours}:${minutes}`
         pDateToday.innerHTML=`${hours}:${minutes}`;
         div.append(spanUser);
