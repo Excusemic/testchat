@@ -78,6 +78,31 @@ sendMessage.addEventListener('keyup', e => {
 
 
 })
+
+sendMessage.addEventListener('submit', e => {
+        e.preventDefault();
+        let mymessage = document.getElementById('mymessage').value;
+        let selectedRoom = document.querySelector('.selected-chatroom');
+        if(mymessage=='' || !/\S/.test(mymessage)) {
+            alert('Poruka ne moze biti prazna')
+            document.getElementById('mymessage').value='';
+        } else {
+            document.getElementById('mymessage').value='';
+            if (selectedRoom.getAttribute('value') == 'general'){
+                chatRoom.addChat(mymessage)
+            } else if (selectedRoom.getAttribute('value') == 'js') {
+                chatRoom1.addChat(mymessage)
+            } else if (selectedRoom.getAttribute('value') == 'homework') {
+                chatRoom2.addChat(mymessage)
+            } else if (selectedRoom.getAttribute('value') == 'tests') {
+                chatRoom3.addChat(mymessage)
+                document.getElementById('mymessage').value='';
+            }
+            
+        }
+
+
+})
 document.getElementById('mymessage').addEventListener('keydown', event => {
     if(event.code === 'Enter') {
         if(!event.shiftKey) {
