@@ -6,11 +6,19 @@ let sendMessage = document.getElementById('myMessageForm');
 let setUsername = document.getElementById('updateUsernameForm');
 let chatRooms = document.querySelectorAll('.main-content-header div');
 let defaultSelectedRoom = document.querySelector('.selected-chatroom');
-let chatRoom = new Chatroom (defaultSelectedRoom.getAttribute('value'), 'guest');
-let chatRoom1 = new Chatroom ('js', 'guest');
-let chatRoom2 = new Chatroom ('homework', 'guest');
-let chatRoom3 = new Chatroom ('tests', 'guest');
+let currentUser = `guest${randomNo()}`;
+if (localStorage.getItem('username') == null) {
+    localStorage.setItem('username', currentUser)
+}
 
+let chatRoom = new Chatroom (defaultSelectedRoom.getAttribute('value'), localStorage.getItem('username'));
+let chatRoom1 = new Chatroom ('js', localStorage.getItem('username'));
+let chatRoom2 = new Chatroom ('homework', localStorage.getItem('username'));
+let chatRoom3 = new Chatroom ('tests', localStorage.getItem('username'));
+function randomNo() {
+    let num = Math.floor(Math.random() * 1000); 
+    return num;
+}
 chatRooms.forEach(btn => {
     btn.addEventListener('click', () => {
         chatRooms.forEach(room => {
@@ -56,6 +64,7 @@ setUsername.addEventListener('submit', e => {
     chatRoom1.username =  username;
     chatRoom2.username =  username;
     chatRoom3.username =  username;
+    localStorage.setItem('username', username)
 
 })
 chatRoom.getChats(data => {

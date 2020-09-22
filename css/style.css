@@ -47,12 +47,20 @@ li {
 .messageDiv {
     background-color: rgb(5, 202, 202);
     width: 40%;
+    margin: .6em auto;
+    margin-left: 0;
+    height: auto;
+    word-wrap: break-word;
     color: #fff;
-    margin: .2em 0em 2em .4em;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
     padding: .6em;
+}
+ul {
+  padding: 0em;
+  width: 95%;
+  margin: auto;
 }
 .messageDiv span {
     color: #FCFCD4;
@@ -62,6 +70,11 @@ li {
     font-size: .7em;
     margin-top: .3em;
     color: #164638;
+}
+.user-control {
+  width: 80%;
+  margin: auto;
+  margin-right: 0;
 }
 header{
     text-align: center;
@@ -92,8 +105,31 @@ header{
     background: linear-gradient(184deg, rgba(221,246,237,1) 0%, rgba(68,145,122,1) 100%);
     
 }
+.chat-messages span {
+  color: #FCFCD4;
+}
+.chat-messages p {
+  margin: 0;
+  font-size: .7em;
+  margin-top: .3em;
+  color: #164638;
+}
 .main-content-header .selected-chatroom {
     background-color: rgb(0, 92, 92);
+}
+.homeMessage{
+  height: auto;
+  word-wrap: break-word;
+  background-color: rgb(122, 189, 189);
+  width: 40%;
+  color: #fff;
+  margin: .6em auto;
+  margin-right: 0;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding: .6em;
+
 }
 form {
     margin: auto;
@@ -131,6 +167,9 @@ form textarea {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 600px) {
+  .user-control  {
+    width: 100%;
+  }
     .chat-container {
         width: 95%;
     }

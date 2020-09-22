@@ -36,6 +36,9 @@ export class ChatUI{
         div.append(pDate);
         li.append(div);
         this.ul.append(li);
+        if (spanUser.innerHTML.includes(localStorage.getItem('username'))) {
+            spanUser.parentElement.setAttribute('class', 'homeMessage')
+        }
 
     }
 }
