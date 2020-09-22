@@ -2,6 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
+    background: rgb(51,57,129);
+    background: linear-gradient(315deg, rgba(51,57,129,1) 0%, rgba(78,186,186,1) 50%, rgba(252,176,69,1) 100%);
 }
 
 ::-webkit-scrollbar {
@@ -105,6 +107,9 @@ header{
     margin-bottom: 1.4em;
     background: rgb(221,246,237);
     background: linear-gradient(184deg, rgba(221,246,237,1) 0%, rgba(68,145,122,1) 100%);
+    -webkit-box-shadow: 11px 21px 33px 8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 11px 21px 33px 8px rgba(0,0,0,0.75);
+    box-shadow: 11px 21px 33px 8px rgba(0,0,0,0.75);
     
 }
 .chat-messages span {

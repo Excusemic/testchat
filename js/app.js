@@ -64,14 +64,22 @@ sendMessage.addEventListener('submit', e => {
 setUsername.addEventListener('submit', e => {
     e.preventDefault();
     let username = document.getElementById('updateUsername').value;
-    chatRoom.username =  username;
-    chatRoom1.username =  username;
-    chatRoom2.username =  username;
-    chatRoom3.username =  username;
-    localStorage.setItem('username', username)
-    usernameUpdateBtn.placeholder = `username: ${localStorage.getItem('username')}`
-    document.getElementById('updateUsername').value = '';
-
+        if(!/\S/.test(username))  {
+            alert('username ne moze biti prazno polje')
+            document.getElementById('updateUsername').value = '';
+        } else if (username.length < 3 || username.length > 10) {
+            alert('username mora biti izmedju 2 i 10 karaktera')
+            document.getElementById('updateUsername').value = '';
+            
+        } else {
+            chatRoom.username =  username;
+            chatRoom1.username =  username;
+            chatRoom2.username =  username;
+            chatRoom3.username =  username;
+            localStorage.setItem('username', username)
+            usernameUpdateBtn.placeholder = `username: ${localStorage.getItem('username')}`
+            
+        }
 })
 chatRoom.getChats(data => {
     let testUI = new ChatUI(data);
