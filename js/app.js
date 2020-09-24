@@ -36,6 +36,7 @@ chatRooms.forEach(btn => {
         chatRooms.forEach(room => {
             room.classList.remove('selected-chatroom');
         })
+
         let room = btn.getAttribute('value');
         localStorage.setItem('defaultRoom', room);
         btn.classList.add('selected-chatroom');
@@ -49,6 +50,7 @@ chatRooms.forEach(btn => {
                 let data = elem.data();
                 let testUI = new ChatUI(data);
                 testUI.templateLI()
+                document.querySelector('.chat-messages ul li:last-child').scrollIntoView({behavior: "smooth"});
             })
         })
     })
@@ -142,6 +144,7 @@ chatRoom.getChats(data => {
     let selectedRoom = document.querySelector('.selected-chatroom');
     if (selectedRoom.getAttribute('value') == 'general'){
         testUI.templateLI()
+        document.querySelector('.chat-messages ul li:last-child').scrollIntoView({behavior: "smooth"});
     }
 
 })
@@ -150,6 +153,8 @@ chatRoom1.getChats(data => {
     let selectedRoom = document.querySelector('.selected-chatroom');
     if (selectedRoom.getAttribute('value') == 'js'){
         testUI.templateLI()
+        document.querySelector('.chat-messages ul li:last-child').scrollIntoView({behavior: "smooth"});
+
     }
 })
 chatRoom2.getChats(data => {
@@ -157,6 +162,7 @@ chatRoom2.getChats(data => {
     let selectedRoom = document.querySelector('.selected-chatroom');
     if (selectedRoom.getAttribute('value') == 'homework'){
         testUI.templateLI()
+        document.querySelector('.chat-messages ul li:last-child').scrollIntoView({behavior: "smooth"});
     }
 })
 chatRoom3.getChats(data => {
@@ -164,6 +170,7 @@ chatRoom3.getChats(data => {
     let selectedRoom = document.querySelector('.selected-chatroom');
     if (selectedRoom.getAttribute('value') == 'tests'){
         testUI.templateLI()
+        document.querySelector('.chat-messages ul li:last-child').scrollIntoView({behavior: "smooth"});
     }
 })
 

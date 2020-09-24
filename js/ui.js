@@ -36,7 +36,9 @@ export class ChatUI{
         arrayOfRows.forEach(row => {
             spanMessage.innerHTML+=`<span class="rowSpan">${row}</span>`;
         })
-        
+        if(minutes >= 0 && minutes <= 9) {
+            minutes = `0${minutes}`;
+        }
         pDate.innerHTML=`${day}.${month+1}.${year} - ${hours}:${minutes}`
         pDateToday.innerHTML=`${hours}:${minutes}`;
         div.append(spanUser);
