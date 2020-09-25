@@ -21,6 +21,7 @@ let chatRooms = document.querySelectorAll('.main-content-header div');
 
 let usernameUpdateBtn = document.getElementById('updateUsername')
 
+
 usernameUpdateBtn.placeholder = `username: ${localStorage.getItem('username')}`
 
 let chatRoom = new Chatroom ('general', localStorage.getItem('username'));
@@ -36,7 +37,6 @@ chatRooms.forEach(btn => {
         chatRooms.forEach(room => {
             room.classList.remove('selected-chatroom');
         })
-
         let room = btn.getAttribute('value');
         localStorage.setItem('defaultRoom', room);
         btn.classList.add('selected-chatroom');
@@ -48,7 +48,8 @@ chatRooms.forEach(btn => {
         .then(snapshot => {
             snapshot.forEach(elem =>{
                 let data = elem.data();
-                let testUI = new ChatUI(data);
+                let id = elem.id;
+                let testUI = new ChatUI(data, id);
                 testUI.templateLI()
                 document.querySelector('.chat-messages ul li:last-child').scrollIntoView({behavior: "smooth"});
             })
@@ -129,6 +130,12 @@ setUsername.addEventListener('submit', e => {
             document.getElementById('updateUsername').value = '';
             
         } else {
+            document.querySelector('.username-change-notif').innerHTML=`username set to: ${username}`
+            document.querySelector('.username-change-notif').style.display="block";
+            setTimeout(() => {
+                document.querySelector('.username-change-notif').style.display="none"; 
+            }, 3000);
+
             chatRoom.username =  username;
             chatRoom1.username =  username;
             chatRoom2.username =  username;
@@ -140,7 +147,7 @@ setUsername.addEventListener('submit', e => {
         }
 })
 chatRoom.getChats(data => {
-    let testUI = new ChatUI(data);
+    let testUI = new ChatUI(data[0], data[1]);
     let selectedRoom = document.querySelector('.selected-chatroom');
     if (selectedRoom.getAttribute('value') == 'general'){
         testUI.templateLI()
@@ -149,7 +156,7 @@ chatRoom.getChats(data => {
 
 })
 chatRoom1.getChats(data => {
-    let testUI = new ChatUI(data);
+    let testUI = new ChatUI(data[0], data[1]);
     let selectedRoom = document.querySelector('.selected-chatroom');
     if (selectedRoom.getAttribute('value') == 'js'){
         testUI.templateLI()
@@ -158,7 +165,7 @@ chatRoom1.getChats(data => {
     }
 })
 chatRoom2.getChats(data => {
-    let testUI = new ChatUI(data);
+    let testUI = new ChatUI(data[0], data[1]);
     let selectedRoom = document.querySelector('.selected-chatroom');
     if (selectedRoom.getAttribute('value') == 'homework'){
         testUI.templateLI()
@@ -166,7 +173,7 @@ chatRoom2.getChats(data => {
     }
 })
 chatRoom3.getChats(data => {
-    let testUI = new ChatUI(data);
+    let testUI = new ChatUI(data[0], data[1]);
     let selectedRoom = document.querySelector('.selected-chatroom');
     if (selectedRoom.getAttribute('value') == 'tests'){
         testUI.templateLI()

@@ -18,12 +18,14 @@ export class Chatroom{
             this._username = u;
         }
     }
+
     get room() {
         return this._room;
     }
     get username() {
         return this._username;
     }
+
     updateUsarname(name) {
         this.username = name;
     }
@@ -45,6 +47,7 @@ export class Chatroom{
         db.collection("chats").doc().set(obj).then(() => console.log('Uspesno dodat chat!'))
         .catch(e => console.log('neka greska', e));
     };
+
     getChats(callback) {
         this.unsub = this.chats
         .where('room', '==', this.room)
@@ -52,8 +55,9 @@ export class Chatroom{
         .onSnapshot(snapshot => {
             snapshot.docChanges().forEach(change => {
                  if (change.type == 'added') {
-                    callback(change.doc.data())                    
-                 }
+                    let data = [change.doc.data(), change.doc.id]
+                    callback(data)  
+                 } 
                 
             });
         });
