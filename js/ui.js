@@ -46,6 +46,18 @@ export class ChatUI{
         deleteBtn.classList.add('xbtn')
         spanUser.innerHTML=`${user}: `
         spanUser.style.fontWeight = "bold"
+        pDate.setAttribute('year', year)
+        pDateToday.setAttribute('year', year)
+        pDate.setAttribute('month', month)
+        pDateToday.setAttribute('month', month)
+        pDate.setAttribute('day', day)
+        pDateToday.setAttribute('day', day)
+        pDate.setAttribute('hours', hours)
+        pDateToday.setAttribute('hours', hours)
+        pDate.setAttribute('minutes', minutes)
+        pDateToday.setAttribute('minutes', minutes)
+        pDate.classList.add('date-span')
+        pDateToday.classList.add('date-span')
         arrayOfRows.forEach(row => {
             spanMessage.innerHTML+=`<span class="rowSpan">${row}</span>`;
         })
@@ -84,16 +96,30 @@ export class ChatUI{
     deleteMsg(elem) {
         let msg = elem.target.parentElement.parentElement.parentElement;
         let msgDeletingId = msg.getAttribute('data-id')
-        document.querySelector('.overlay').style.display="flex";
         let yesbtn = document.querySelector('.yes');
         let nobtn = document.querySelector('.no');
-        yesbtn.addEventListener('click', () => {
-             db.collection("chats").doc(msgDeletingId).delete().then(e => msg.remove())
-             document.querySelector('.overlay').style.display="none";
-        })
-        nobtn.addEventListener('click', () => {
-            document.querySelector('.overlay').style.display="none";
-       })
+        if(elem.target.parentElement.innerHTML.includes(localStorage.getItem('username'))) {
+            document.querySelector('.overlay').style.display="flex";
+            document.querySelector('.overlay .delete-pop p').innerHTML="Are you sure? You are deleting your message for everyone";
+            yesbtn.addEventListener('click', () => {
+                db.collection("chats").doc(msgDeletingId).delete().then(e => msg.remove())
+                document.querySelector('.overlay').style.display="none";
+           })
+           nobtn.addEventListener('click', () => {
+               document.querySelector('.overlay').style.display="none";
+          })
+        } else {
+            document.querySelector('.overlay').style.display="flex";
+            document.querySelector('.overlay .delete-pop p').innerHTML="Are you sure? You are deleting this message temporarily";
+            yesbtn.addEventListener('click', () => {
+                msg.remove();
+                document.querySelector('.overlay').style.display="none";
+           })
+           nobtn.addEventListener('click', () => {
+               document.querySelector('.overlay').style.display="none";
+          })
+        }
+
         
     }
 }

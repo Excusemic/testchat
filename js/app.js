@@ -13,10 +13,15 @@ if (localStorage.getItem('username') == null) {
 if(localStorage.getItem('defaultRoom') == null) {
     localStorage.setItem('defaultRoom', 'general');
 }
-
+if(localStorage.getItem('defaultColor') == null) {
+    localStorage.setItem('defaultColor', '#E5E7E5');
+}
+document.querySelector('form input[type="color"]').value = localStorage.getItem('defaultColor');
 let sendMessage = document.getElementById('myMessageForm');
 let setUsername = document.getElementById('updateUsernameForm');
 let chatRooms = document.querySelectorAll('.main-content-header div');
+let updateColor = document.getElementById('changeColorForm');
+let filterMessages = document.getElementById('filterTimeForm');
 
 
 let usernameUpdateBtn = document.getElementById('updateUsername')
@@ -146,6 +151,59 @@ setUsername.addEventListener('submit', e => {
             
         }
 })
+
+
+
+document.body.style.background = `linear-gradient(315deg, ${localStorage.getItem('defaultColor')} 0%, rgb(195, 202, 202) 50%, ${localStorage.getItem('defaultColor')} 100%) `
+updateColor.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let color = document.querySelector('#updateColor').value;
+    localStorage.setItem('defaultColor', color);
+    document.body.style.opacity = '0'
+    document.querySelector('.chat-messages').style.transform="rotateY(180deg)"
+    setTimeout(() => {
+        document.body.style.opacity = '1'
+        document.querySelector('.chat-messages').style.transform="rotateY(0deg)"
+        document.body.style.background = `linear-gradient(315deg, ${color} 0%, rgb(195, 202, 202) 50%, ${color} 100%) `
+        document.querySelector('form input[type="color"]').value = localStorage.getItem('defaultColor');
+    }, 500);
+
+})
+
+
+filterMessages.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let startTime = document.querySelector('#startTime').value;
+    let endTime = document.querySelector('#endTime').value;
+    var startDate = new Date(startTime);
+    var endDate = new Date(endTime);
+    let allLi = document.querySelectorAll('ul li')
+    if(startTime && endTime) {
+        document.querySelector('.chat-messages ul').innerHTML='';
+        db.collection('chats')
+        .where('room', '==', localStorage.getItem('defaultRoom'))
+        .where('created_at', '>=', startDate)
+        .where('created_at', '<=', endDate)
+        .get()
+        .then(snapshot => {
+            snapshot.forEach(elem =>{
+                if (!snapshot.empty) {
+                    let data = elem.data();
+                    let id = elem.id;
+                    let testUI = new ChatUI(data, id);
+                    testUI.templateLI()
+                    document.querySelector('.chat-messages ul li:last-child').scrollIntoView({behavior: "smooth"});
+                } 
+            })
+        })
+        .catch(e => console.log('Error', e))
+    } else {
+        alert('Morate ispravno uneti parametre')
+    }
+
+})
+
+
 chatRoom.getChats(data => {
     let testUI = new ChatUI(data[0], data[1]);
     let selectedRoom = document.querySelector('.selected-chatroom');
@@ -180,4 +238,5 @@ chatRoom3.getChats(data => {
         document.querySelector('.chat-messages ul li:last-child').scrollIntoView({behavior: "smooth"});
     }
 })
+
 

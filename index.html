@@ -12,7 +12,7 @@
 <body>
     <div class="overlay">
         <div class="delete-pop">
-            <p>Are you sure?</p>
+            <p></p>
             <button class="yes">Yes</button>
             <button class="no">No</button>
         </div>
@@ -33,6 +33,17 @@
                 <ul></ul>
             </div>
             <div class="user-control">
+                <form id="changeColorForm">
+                        <input type="color" name="updateColor" id="updateColor">
+                        <input type="submit" value="Update page color" >
+                </form>
+                <form id="filterTimeForm">
+                    <div>
+                        <input type="datetime-local" name="startTime" id="startTime">
+                        <input type="datetime-local" name="endTime" id="endTime">
+                    </div>
+                    <input type="submit" value="Filter messages" >
+                </form>
                 <form id="myMessageForm">
                     <textarea name="mymessage" id="mymessage" placeholder="Your message"></textarea>
                     <input type="submit" value="Send message">

@@ -2,8 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    background: rgb(51,57,129);
-    background: linear-gradient(315deg, rgba(51,57,129,1) 0%, rgba(78,186,186,1) 50%, rgba(252,176,69,1) 100%);
+    transition: opacity .25s ease-in-out;
 }
 .overlay {
   position: fixed;
@@ -146,12 +145,18 @@ header{
 }
 
 .chat-messages {
+    perspective: 1000px;
+    transform-style: preserve-3d;
     height: 400px;
     border: 1px solid aqua;
     border-bottom: none;
     border-top: none;
     overflow-Y: scroll;
     margin-bottom: 1.4em;
+    transition-property: all;
+    transition-property: transform;
+    transform: rotateY(0deg);
+    transition-duration: 1s;
     background: rgb(221,246,237);
     background: linear-gradient(184deg, rgba(221,246,237,1) 0%, rgba(68,145,122,1) 100%);
     -webkit-box-shadow: 11px 21px 33px 8px rgba(0,0,0,0.75);
@@ -186,6 +191,7 @@ header{
   padding: .6em;
 
 }
+
 .rowSpan {
   display: block;
   -ms-word-break: normal;
@@ -203,10 +209,17 @@ ul li {
   padding: 1em;
   cursor: pointer;
   user-select: none;
-  display: none;
+  opacity: 0.3;
+  transition: opacity .2s ease-in-out;
 }
 .homeMessage .xbtn {
   display: block;
+}
+.homeMessage:hover .xbtn {
+  opacity: 1;
+}
+.messageDiv:hover .xbtn {
+  opacity: 1;
 }
 form {
     margin: auto;
@@ -223,6 +236,14 @@ form input[type="text"] {
     outline: none;
     border: none;
 }
+form input[type="color"] {
+  border-radius: 15px;
+  height: 2em;
+  width: 290px;
+  padding: .4em;
+  outline: none;
+  border: none;
+}
 form input[type="submit"] {
     outline: none;
     border-radius: 15px;
@@ -231,8 +252,26 @@ form input[type="submit"] {
     color: #fff;
     height: 2.2em;
     width: 120px;
-    margin-top: .6em;
     margin-left: max(2em);
+
+}
+#filterTimeForm {
+
+}
+#filterTimeForm div {
+  display: flex;
+  flex-direction: column;
+}
+#filterTimeForm input[type="submit"]{
+
+}
+form input[type="datetime-local"] {
+  outline: none;
+  border-radius: 15px;
+  border: none;
+  height: 2.2em;
+  width: 300px;
+  margin-bottom: 1em;
 
 }
 form textarea {
@@ -261,4 +300,25 @@ form textarea {
     .overlay .delete-pop {
       width: 100%;
     }
+    form input[type="submit"] {
+      margin-left: 0;
+      margin-top: 1em;
+    }
+    #filterTimeForm input[type="submit"] {
+      margin-left: 0;
+    }
 }
+@media only screen and (min-width: 600px) and (max-width: 950px) {
+
+    form input[type="submit"] {
+      margin-left: 0;
+      margin-top: 1em;
+    }
+    #filterTimeForm input[type="submit"] {
+      margin-left: 0;
+    }
+    .user-control {
+      margin-left: 0em;
+    }
+}
+
